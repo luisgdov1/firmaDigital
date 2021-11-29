@@ -3,7 +3,10 @@ from Crypto.Hash import SHA256
 from Crypto.Signature import pss
 
 
-
+rutaAGuardarFirmado = '/ruta donde va'
+rutaTxtMensajeOrigial = '/ruta archivo base'
+rutaLlavepublica = 'Ruta de la llave publica'
+rutaLlavePrivada = 'Ruta de la llave privada'
 
 def generarLlaves():
     nombres = ['Betito', 'Alicia', 'Candy']
