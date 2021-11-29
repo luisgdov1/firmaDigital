@@ -34,7 +34,7 @@ def firma(rutaTxtMensajeOrigial, rutaLlavePrivada):
     key = RSA.import_key(open(rutaLlavePrivada).read())
     h = SHA256.new(message)
     signature = pss.new(key).sign(h)
-    imprimirFirma(signature + message)
+    imprimirFirma(signature + message, rutaArchivoFirmadoNuevo)
     return message
 
 def imprimirFirma(contenido, rutaAGuardarFirmado):
