@@ -28,19 +28,20 @@ def txtToBytes(ruta):
     texto = archivo.read()
     archivo.close()
     return texto
+def imprimirFirma(contenido, rutaAGuardarFirmado):
+    arc = open(rutaAGuardarFirmado, 'wb')
+    arc.write(contenido)
+    arc.close()
 
 def firma(rutaTxtMensajeOrigial, rutaLlavePrivada):
     message = txtToBytes(rutaTxtMensajeOrigial)
     key = RSA.import_key(open(rutaLlavePrivada).read())
     h = SHA256.new(message)
     signature = pss.new(key).sign(h)
-    imprimirFirma(signature + message, rutaArchivoFirmadoNuevo)
-    return message
+    contenido_firma = signature + message
+    imprimirFirma(contenido_firma, rutaArchivoFirmadoNuevo)
+    print ("archivo firmado con exito")
 
-def imprimirFirma(contenido, rutaAGuardarFirmado):
-    arc = open(rutaAGuardarFirmado, 'wb')
-    arc.write(contenido)
-    arc.close()
 
 def verificar(rutatxt, rutaLlavepublica):
     bytesVerificar = open(rutatxt, 'rb').read()
